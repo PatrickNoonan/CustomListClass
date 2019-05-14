@@ -6,37 +6,64 @@ using System.Threading.Tasks;
 
 namespace CustomListClass
 {
-    public class CustomList
+    public class CustomList<T>
     {
         //has these
-        public int[] array;
+        public T[] elements;
+        public T[] emptyArray;
+        public int size;
+        public int Capacity
+        {
+            get
+            {
+                return 4;
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return elements.Length;
+            }
+        }
 
         //constructor
         public CustomList()
         {
-            array = new int[0];
+            T[] emptyArray = new T[0];
+            elements = emptyArray;
+        }
+        public CustomList(int capacity)
+        {
+            if (capacity == 0)
+                elements = emptyArray;
+            else
+                elements = new T[capacity];
         }
 
         //does this
-        public void ChangeArraySize()
+        public void Add(T item)
+        {
+            // Adds the given object to the end of this list. The size of the list is
+            // increased by one. If required, the capacity of the list is doubled
+            // before adding the new element.
+            if (size == elements.Length) EnsureCapacity(size + 1);
+            elements[size++] = item;
+            _version++;
+        }
+
+        public void GetSetCount()
         {
 
         }
-        public void AcceptNullAsValid()
+        public void Add(T thingToAdd)
         {
-
-        }
-        public void AllowDuplicateElements()
-        {
-
+            elements[Count + 1] = thingToAdd;
         }
         public void FindCount()
         {
-            //Gets the number of elements contained in the List<T>.
-        }
-        public void FindCapacity()
-        {
-            /*Gets or sets the total number of elements the internal data structure can hold without resizing.*/
+
         }
         public void ResizeWhenCountIsCapacity()
         {
@@ -47,52 +74,4 @@ namespace CustomListClass
         }
     }
 }
-/*[TestMethod]
-        public void TakeInASizeInput_ChangeSizeOfArray_ReturnArraySize()
-        {
-            //arrange - arrange all necessary preconditions and inputs
-            CustomList NewCustomList = new CustomList();
-            int sizeInput = 0;
-            int arraySize = 4;
-            int expected = 0;
-            int actual;
-
-            //act - act on the method under test
-            actual = NewCustomList.ChangeArraySize
-
-            //assert - assert that the expected result occured
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void CheckSizeOfArray_CountEachElementInArray_ReturnTheArrayCount()
-        {
-
-        }
-        [TestMethod]
-        public void CheckCountOfArray_CheckCapacityOfArray_ReturnTheArrayCapacity()
-        {
-
-        }
-        [TestMethod]
-        public void CheckSizeOfArray_ChangeSizeWhenCountIsCapacity_ReturnDoubleSizeArray()
-        {
-
-        }
-        [TestMethod]
-        public void CheckSizeOfArray_TransferElementsToLargerArray_ReturnNewDoubleSizeArray()
-        {
-
-        }
-        [TestMethod]
-        public void CheckElementsOfArray_IfElementIsNull_ReturnIfArrayAccepts()
-        {
-
-        }
-        [TestMethod]
-        public void CheckElementsOfArray_IfElementIsDuplicate_ReturnIfArrayAccepts()
-        {
-
-        }
-        */
-
 
