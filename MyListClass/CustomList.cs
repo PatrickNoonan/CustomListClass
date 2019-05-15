@@ -62,15 +62,34 @@ namespace MyListClass
             count++;
             checkCapacity();
         }
-        public void Remove(T item)
+        public void Remove(T[] source, T item)
         {
-            for (int i = 0; i < count; i++)
+            int index;
+            for (int i = 0; i < capacity; i++)
             {
-                if (this.workingArray[i] == item)
+                if (source[i] == item)
                 {
-
+                    index = i;
                 }
             }
+
+            T[] holderArray = new T[capacity - 1];
+            Array.Copy(source, 0, holderArray, 0, capacity, index);
+
+            Array.Copy(source, index + 1, holderArray, index, capacity - index - 1);
+
+            workingArray = holderArray;
+            count--;
+        }
+        public void RemoveAt(T[] source, int index)
+        {
+            T[] holderArray = new T[capacity - 1];
+            Array.Copy(source, 0, holderArray, 0, index);
+
+            if (index < capacity - 1)
+                Array.Copy(source, index + 1, holderArray, index, capacity - index - 1);
+
+            workingArray = holderArray;
             count--;
         }
         public override string ToString()
@@ -78,10 +97,10 @@ namespace MyListClass
             var result = string.Join(" ", workingArray).Trim();
             return result;
         }
-        public IEnumerator GetEnumerator()
+        /*public IEnumerator GetEnumerator()
         {
             return workingArray.GetEnumerator();
-        }
+        }*/
         public bool Equals(T other)
         {
             throw new NotImplementedException();

@@ -15,6 +15,11 @@ namespace MyListClass
             newCustomList.Add(2);
             newCustomList.Add(3);
             newCustomList.Add(4);
+            newCustomList.Add(1);
+            newCustomList.Add(2);
+            newCustomList.Add(3);
+            newCustomList.Add(4);
+            newCustomList.RemoveAt(newCustomList.workingArray, 6);
         }
     }
 }
