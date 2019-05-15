@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEquatable<T>
     {
         //has these
         public T[] workingArray;
@@ -14,6 +15,26 @@ namespace MyListClass
         private int capacity;
         public int Count { get { return count; } }
         private int count;
+
+        public T this[int i]
+        {
+            get
+            {
+                if (i >= count)
+                {
+                    throw new IndexOutOfRangeException($"The list can hold only {capacity} elements.");
+                }
+                return (T)workingArray[i];
+            }
+            set
+            {
+                if (i >= count)
+                {
+                    throw new IndexOutOfRangeException($"The list can hold only {capacity} elements.");
+                }
+                workingArray[i] = value;
+            }
+        }
 
         //constructor
         public CustomList()
@@ -43,8 +64,27 @@ namespace MyListClass
         }
         public void Remove(T item)
         {
-            //workingArray[counter] = 0;
+            for (int i = 0; i < count; i++)
+            {
+                if (this.workingArray[i] == item)
+                {
+
+                }
+            }
             count--;
+        }
+        public override string ToString()
+        {
+            var result = string.Join(" ", workingArray).Trim();
+            return result;
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return workingArray.GetEnumerator();
+        }
+        public bool Equals(T other)
+        {
+            throw new NotImplementedException();
         }
     }
 }

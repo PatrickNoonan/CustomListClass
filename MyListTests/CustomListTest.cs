@@ -150,8 +150,25 @@ namespace MyListTests
 
             //act - act on the method under test
             NewCustomList.Add(value1);
-            NewCustomList.Remove(value1);
+            //NewCustomList.Remove(value1);
             actual = NewCustomList.workingArray[0];
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveArrayWithElementsOnIt_UseToStringMethod_ReturnStringOfElements()
+        {
+            CustomList<string> NewCustomList = new CustomList<string>();
+            string value1 = "Hello";
+            string value2= "Bob";
+            string expected = "Hello Bob";
+            string actual;
+
+            //act - act on the method under test
+            NewCustomList.Add(value1);
+            NewCustomList.Add(value2);
+            actual = NewCustomList.ToString();
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
