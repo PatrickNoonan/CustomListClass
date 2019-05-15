@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CustomListClass;
+using MyListClass;
 
-namespace ListClassTests
+namespace MyListTests
 {
     [TestClass]
     public class CustomListTest
@@ -101,7 +104,7 @@ namespace ListClassTests
         public void HaveArrayWithElementsOnIt_UseRemoveMethods_ReturnArrayWithoutThem()
         {
             CustomList<int> NewCustomList = new CustomList<int>();
-            int value1 = 7;      
+            int value1 = 7;
             int expected = value1;
             int actual;
 

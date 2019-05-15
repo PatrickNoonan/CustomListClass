@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomListClass
+namespace MyListClass
 {
     class Program
     {
@@ -15,7 +15,6 @@ namespace CustomListClass
             newCustomList.Add(2);
             newCustomList.Add(3);
             newCustomList.Add(4);
-
         }
     }
 }
