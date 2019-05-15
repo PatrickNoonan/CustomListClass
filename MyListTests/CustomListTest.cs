@@ -72,7 +72,7 @@ namespace MyListTests
             NewCustomList.Add(value2);
             NewCustomList.Add(value1);
             NewCustomList.Add(value2);
-            actual = NewCustomList.capacity;
+            actual = NewCustomList.Capacity;
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
@@ -95,7 +95,47 @@ namespace MyListTests
             NewCustomList.Add(value2);
             NewCustomList.Add(value1);
             NewCustomList.Add(value2);
-            actual = NewCustomList.capacity;
+            actual = NewCustomList.Capacity;
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveArrayWithoutElementsOnIt_UseAddMethods16_ReturnArrayCapacity()
+        {
+            CustomList<int> NewCustomList = new CustomList<int>();
+            int value1 = 7;
+            int expected = 32;
+            int actual;
+
+            //act - act on the method under test
+            for (int i = 0; i < 17; i++)
+            {
+                NewCustomList.Add(value1);
+            }
+            
+            actual = NewCustomList.Capacity;
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveArrayWithoutElementsOnIt_UseAddMethods16_ReturnArrayIndexAt17()
+        {
+            CustomList<int> NewCustomList = new CustomList<int>();
+            int value1 = 7;
+            int value2 = 20;
+            int expected = value2;
+            int actual;
+
+            //act - act on the method under test
+            for (int i = 0; i < 17; i++)
+            {
+                NewCustomList.Add(value1);
+            }
+            NewCustomList.Add(value2);
+
+            actual = NewCustomList.workingArray[17];
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);

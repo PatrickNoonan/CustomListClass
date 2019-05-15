@@ -10,39 +10,41 @@ namespace MyListClass
     {
         //has these
         public T[] workingArray;
-        public T[] startingArray;
-        public int capacity;
-        public int counter;
+        public int Capacity { get { return capacity; } }
+        private int capacity;
+        public int Count { get { return count; } }
+        private int count;
 
         //constructor
         public CustomList()
         {
-            counter = 0;
+            count = 0;
             capacity = 4;
             workingArray = new T[capacity];
         }
 
         //does this
-        public void checkCapacity()
+        public void checkCapacity() //break up into SR
         {
-            if (counter == capacity)
+            if (count == capacity)
             {
+                int prevCapacity = capacity;
                 capacity = capacity * 2;
                 T[] newArray = new T[capacity];
-                Array.Copy(workingArray, 0, newArray, 0, capacity);
+                Array.Copy(workingArray, 0, newArray, 0, prevCapacity);
                 workingArray = newArray;
             }
         }
         public void Add(T item)
         {
-            workingArray[counter] = item;
-            counter++;
+            workingArray[count] = item;
+            count++;
             checkCapacity();
         }
         public void Remove(T item)
         {
             //workingArray[counter] = 0;
-            counter--;
+            count--;
         }
     }
 }
