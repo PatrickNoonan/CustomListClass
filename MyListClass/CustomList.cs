@@ -52,8 +52,12 @@ namespace MyListClass
                 int prevCapacity = capacity;
                 capacity = capacity * 2;
                 T[] newArray = new T[capacity];
-                Array.Copy(workingArray, 0, newArray, 0, prevCapacity);
                 workingArray = newArray;
+                for (int i = 0; i < prevCapacity; i++)
+                {
+                    workingArray[i] = newArray[i];
+
+                }
             }
         }
         public void Add(T item)
@@ -62,11 +66,12 @@ namespace MyListClass
             count++;
             checkCapacity();
         }
-        public void Remove(T[] source, T item)
+        /*public void Remove(T[] source, T item)
         {
             int index;
             for (int i = 0; i < capacity; i++)
             {
+                item.Equals()
                 if (source[i] == item)
                 {
                     index = i;
@@ -80,7 +85,7 @@ namespace MyListClass
 
             workingArray = holderArray;
             count--;
-        }
+        }*/
         public void RemoveAt(T[] source, int index)
         {
             T[] holderArray = new T[capacity - 1];
@@ -104,6 +109,18 @@ namespace MyListClass
         public bool Equals(T other)
         {
             throw new NotImplementedException();
+        }
+        public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> JoinedCustomList = new CustomList<T>();
+            JoinedCustomList = firstList + secondList;
+            return JoinedCustomList;
+        }
+        public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> JoinedCustomList = new CustomList<T>();
+            JoinedCustomList = firstList - secondList;
+            return JoinedCustomList;
         }
     }
 }

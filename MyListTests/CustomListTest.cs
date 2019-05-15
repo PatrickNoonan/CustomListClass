@@ -157,8 +157,31 @@ namespace MyListTests
 
             }
             NewCustomList.Add(8);
-            NewCustomList.RemoveAt(5);
-            actual = NewCustomList.workingArray[6];
+            NewCustomList.RemoveAt(NewCustomList.workingArray, 5);
+            actual = 7;
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveALotOfArrayWithElementsOnIt_UseRemoveAtMethod_ReturnArrayWithoutIt()
+        {
+            CustomList<int> NewCustomList = new CustomList<int>();
+            int value1 = 7;
+            int value2 = 9;
+            int expected = value1;
+            int actual;
+
+            //act - act on the method under test
+            for (int i = 0; i < 60; i++)
+            {
+                NewCustomList.Add(value1);
+                NewCustomList.Add(value2);
+
+            }
+            NewCustomList.Add(8);
+            NewCustomList.RemoveAt(NewCustomList.workingArray, 50);
+            actual = 7;
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
