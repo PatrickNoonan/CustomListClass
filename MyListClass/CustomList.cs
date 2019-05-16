@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyListClass
 {
-    public class CustomList<T> : IEquatable<T>, IEnumerable
+    public class CustomList<T> : IEnumerable, IComparable
     {
         //has these
         public T[] workingArray;
@@ -51,6 +51,10 @@ namespace MyListClass
             {
                 yield return workingArray[i];
             }
+        }
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
         }
         public void checkCapacity() //break up into SR
         {
@@ -101,7 +105,7 @@ namespace MyListClass
             workingArray = holderArray;
             count--;
         }
-        public void RemoveAt(T[] source, int index)
+        public void RemoveAt(int index)
         {
             T[] holderArray = new T[capacity - 1];
             for (int i = 0; i < capacity - 1; i++)
@@ -125,10 +129,6 @@ namespace MyListClass
             var result = string.Join(" ", workingArray).Trim();
 
             return result;
-        }
-        public bool Equals(T other)
-        {
-            throw new NotImplementedException();
         }
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
@@ -167,7 +167,7 @@ namespace MyListClass
             return ReducedCustomList;
         }
         public CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
-        {
+        {//void
             CustomList<T> ZippedList = new CustomList<T>();
 
             int largestCount;
@@ -186,6 +186,54 @@ namespace MyListClass
                 ZippedList.Add(secondList[i]);
             }
             return ZippedList;
+        }
+        public void QuickSort(int[] arr, int left, int right)
+        {
+            if (left < right)
+            {
+                int pivot = Partition(arr, left, right);
+
+                if (pivot > 1)
+                {
+                    QuickSort(arr, left, pivot - 1);
+                }
+                if (pivot + 1 < right)
+                {
+                    QuickSort(arr, pivot + 1, right);
+                }
+            }
+        }
+        public int Partition(int[] arr, int left, int right)
+        {
+            int pivot = arr[left];
+            while (true)
+            {
+
+                while (arr[left] < pivot)
+                {
+                    left++;
+                }
+
+                while (arr[right] > pivot)
+                {
+                    right--;
+                }
+
+                if (left < right)
+                {
+                    if (arr[left] == arr[right]) return right;
+
+                    int temp = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = temp;
+
+
+                }
+                else
+                {
+                    return right;
+                }
+            }
         }
     }
 }

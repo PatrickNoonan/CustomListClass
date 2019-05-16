@@ -11,6 +11,8 @@ namespace MyListTests
     [TestClass]
     public class CustomListTest
     {
+        //----------------------------------Count------------------------------------------
+        //---------------------------------Capacity----------------------------------------
         //--------------------------------Add Method---------------------------------------
         [TestMethod]
         public void HaveArrayWithoutElementsOnIt_UseAddMethods_ReturnArrayWithThem()
@@ -219,7 +221,7 @@ namespace MyListTests
 
             }
             NewCustomList.Add(8);
-            NewCustomList.RemoveAt(NewCustomList.workingArray, 5);
+            NewCustomList.RemoveAt(5);
             actual = 7;
 
             //assert - assert that the expected result occured
@@ -242,7 +244,7 @@ namespace MyListTests
 
             }
             NewCustomList.Add(8);
-            NewCustomList.RemoveAt(NewCustomList.workingArray, 50);
+            NewCustomList.RemoveAt(50);
             actual = 7;
 
             //assert - assert that the expected result occured
@@ -264,7 +266,7 @@ namespace MyListTests
                 NewCustomList.Add(value2);
 
             }
-            NewCustomList.RemoveAt(NewCustomList.workingArray, 50);
+            NewCustomList.RemoveAt(50);
             actual = NewCustomList.workingArray[50];
 
             //assert - assert that the expected result occured
@@ -362,6 +364,7 @@ namespace MyListTests
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
         }
+        //--------------------------------ForEach Method-----------------------------------------
         //--------------------------------ToString Method-----------------------------------------
         [TestMethod]
         public void HaveArrayWithElementsOnIt_UseToStringMethod_ReturnStringOfElements()
@@ -413,7 +416,7 @@ namespace MyListTests
             string actual;
 
             //act - act on the method under test
-            for ( int i = 0; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 NewCustomList.Add(i);
             }
@@ -779,6 +782,33 @@ namespace MyListTests
 
             JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
             actualArr = JoinedCustomList.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        //------------------------------------Quick Sort Method---------------------------------
+        [TestMethod]
+        public void HaveArrayOfInts_UseQuickSortToSort_ReturnSortArray()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+
+            int[] expectedArr = { 1, 1, 2, 1, 3, 3, 0, 0 };
+            int[] actualArr;
+
+            //act - act on the method under test  
+            for (int i = 0; i < 9; i++)
+            {
+
+            }
 
             if (expectedArr.SequenceEqual(actualArr))
             {

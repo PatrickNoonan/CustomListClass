@@ -14,6 +14,12 @@ namespace MyListClass
             CustomList<int> NewCustomList2 = new CustomList<int>();
             CustomList<int> JoinedCustomList;
 
+
+            //think about this!
+            NewCustomList1.Zip(NewCustomList1, NewCustomList2);
+
+
+
             //act - act on the method under test            
             NewCustomList1.Add(1);
             NewCustomList1.Add(3);
