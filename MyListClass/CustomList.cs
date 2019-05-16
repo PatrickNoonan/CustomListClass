@@ -51,13 +51,12 @@ namespace MyListClass
             {
                 int prevCapacity = capacity;
                 capacity = capacity * 2;
-                T[] newArray = new T[capacity];
-                workingArray = newArray;
+                T[] holderArray = new T[capacity];
                 for (int i = 0; i < prevCapacity; i++)
                 {
-                    workingArray[i] = newArray[i];
-
+                    holderArray[i] = workingArray[i];
                 }
+                workingArray = holderArray;
             }
         }
         public void Add(T item)
@@ -66,46 +65,66 @@ namespace MyListClass
             count++;
             checkCapacity();
         }
-        /*public void Remove(T[] source, T item)
+        public void Remove(T[] source, T item)
         {
-            int index;
+            int index = 0;
             for (int i = 0; i < capacity; i++)
             {
-                item.Equals()
-                if (source[i] == item)
+                if (item.Equals(source[i]))
                 {
                     index = i;
+                    break;
                 }
             }
 
             T[] holderArray = new T[capacity - 1];
-            Array.Copy(source, 0, holderArray, 0, capacity, index);
-
-            Array.Copy(source, index + 1, holderArray, index, capacity - index - 1);
-
+            for (int i = 0; i < capacity - 1; i++)
+            {
+                if (i >= index)
+                {
+                    holderArray[i] = workingArray[i + 1];
+                    if (i == count)
+                    {
+                        break;
+                    }
+                    continue;
+                }
+                holderArray[i] = workingArray[i];
+            }
             workingArray = holderArray;
             count--;
-        }*/
+        }
         public void RemoveAt(T[] source, int index)
         {
             T[] holderArray = new T[capacity - 1];
-            Array.Copy(source, 0, holderArray, 0, index);
-
-            if (index < capacity - 1)
-                Array.Copy(source, index + 1, holderArray, index, capacity - index - 1);
-
+            for (int i = 0; i < capacity - 1; i++)
+            {
+                if (i >= index)
+                {
+                    holderArray[i] = workingArray[i + 1];
+                    if (i == count)
+                    {
+                        break;
+                    }
+                    continue;
+                }
+                holderArray[i] = workingArray[i];
+            }
             workingArray = holderArray;
             count--;
         }
         public override string ToString()
         {
+            /*string result;            
+            for ( int i = 0; i < count; i++)
+            {
+                result += workingArray[i];                    
+            }
+            */
             var result = string.Join(" ", workingArray).Trim();
+
             return result;
         }
-        /*public IEnumerator GetEnumerator()
-        {
-            return workingArray.GetEnumerator();
-        }*/
         public bool Equals(T other)
         {
             throw new NotImplementedException();
@@ -113,14 +132,59 @@ namespace MyListClass
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> JoinedCustomList = new CustomList<T>();
-            JoinedCustomList = firstList + secondList;
+
+            for (int i = 0; i < firstList.Count; i++)
+            {
+                JoinedCustomList.Add(firstList.workingArray[i]);
+            }
+            for (int i = 0; i < secondList.Count; i++)
+            {
+                JoinedCustomList.Add(secondList.workingArray[i]);
+            }
             return JoinedCustomList;
         }
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
-            CustomList<T> JoinedCustomList = new CustomList<T>();
-            JoinedCustomList = firstList - secondList;
-            return JoinedCustomList;
+            CustomList<T> ReducedCustomList = new CustomList<T>();
+            int flag = 0;
+
+            for (int i = 0; i < firstList.Count; i++)
+            {
+                for (int j = 0; j < secondList.Count; j++)
+                {
+                    if (firstList[i].Equals(secondList[j]))
+                    {
+                        flag++;
+                    }
+                }
+                if (flag == 0)
+                {
+                    ReducedCustomList.Add(firstList[i]);
+                }
+                flag = 0;
+            }
+            return ReducedCustomList;
+        }
+        public CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> ZippedList = new CustomList<T>();
+
+            int largestCount;
+            if ( firstList.count > secondList.count)
+            {
+                largestCount = firstList.count;
+            }
+            else
+            {
+                largestCount = secondList.count;
+            }
+
+            for (int i = 0; i < largestCount; i++)
+            {
+                ZippedList.Add(firstList[i]);
+                ZippedList.Add(secondList[i]);
+            }
+            return ZippedList;
         }
     }
 }

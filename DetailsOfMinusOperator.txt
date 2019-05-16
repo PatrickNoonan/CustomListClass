@@ -1,0 +1,95 @@
+public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> ReducedCustomList = new CustomList<T>();
+            int flag = 0;
+
+            for (int i = 0; i < firstList.Count; i++)
+            {
+                for (int j = 0; j < secondList.Count; j++)
+                {
+                    if (firstList[i].Equals(secondList[j]))
+                    {
+                        flag++;
+                    }
+                }
+                if (flag == 0)
+                {
+                    ReducedCustomList.Add(firstList[i]);
+                }
+                flag = 0;
+            }
+            return ReducedCustomList;
+        }
+----------------------------------------------------------------------------------------------------------------
+C#
+
+public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+
+Parameters
+item CustomList<T> firstList
+The object you want to subtract from
+
+item CustomList<T> secondList
+The object to be checked against the firstList for unique elements
+
+Returns
+CustomList<T>
+The returned CustomList will have the elements from firstList, that do not appear in secondList.
+
+Implements
+Add(el)
+
+EXAMPLES
+The following example demonstrates how to return an array that has unique ints from another array
+
+using System;
+
+namespace MyListClass
+{
+    public class CustomList<T> : IEquatable<T>
+	{
+
+	//create two lists
+	    CustomList<int> NewCustomList1 = new CustomList<int>();
+            CustomList<int> NewCustomList2 = new CustomList<int>();
+
+	//create a third list to hold what the method will return
+            CustomList<int> JoinedCustomList;
+
+        //add items to your argument lists           
+            NewCustomList1.Add(1);
+            NewCustomList1.Add(3);
+            NewCustomList1.Add(5);
+            NewCustomList2.Add(2);
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(6);
+	
+	//use the minus operator to subtract second list from the first
+            JoinedCustomList = NewCustomList1 - NewCustomList2;
+
+
+	public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> ReducedCustomList = new CustomList<T>();
+            int flag = 0;
+
+            for (int i = 0; i < firstList.Count; i++)
+            {
+                for (int j = 0; j < secondList.Count; j++)
+                {
+                    if (firstList[i].Equals(secondList[j]))
+                    {
+                        flag++;
+                    }
+                }
+                if (flag == 0)
+                {
+                    ReducedCustomList.Add(firstList[i]);
+                }
+                flag = 0;
+            }
+            return ReducedCustomList;
+        }
+	}
+}
+	
