@@ -409,20 +409,14 @@ namespace MyListTests
         public void HaveArrayWith5IntsOnIt_UseToStringMethod_ReturnStringOfElements()
         {
             CustomList<int> NewCustomList = new CustomList<int>();
-            int value1 = 1;
-            int value2 = 2;
-            int value3 = 3;
-            int value4 = 4;
-            int value5 = 5;
-            string expected = "1 2 3 4 5";
+            string expected = "0 1 2 3 4 5 6 0";
             string actual;
 
             //act - act on the method under test
-            NewCustomList.Add(value1);
-            NewCustomList.Add(value2);
-            NewCustomList.Add(value3);
-            NewCustomList.Add(value4);
-            NewCustomList.Add(value5);
+            for ( int i = 0; i < 7; i++)
+            {
+                NewCustomList.Add(i);
+            }
 
             actual = NewCustomList.ToString();
 
@@ -534,9 +528,11 @@ namespace MyListTests
             expectedList.Add(1);
             expectedList.Add(6);
             CustomList<int> JoinedCustomList;
+            bool expected = true;
+            bool actual;
 
-            int[] expected = { 1, 3, 5, 2, 1, 6, 0, 0 };
-            int[] actual;
+            int[] expectedArr = { 1, 3, 5, 2, 1, 6, 0, 0 };
+            int[] actualArr;
 
             //act - act on the method under test            
             NewCustomList1.Add(1);
@@ -547,34 +543,136 @@ namespace MyListTests
             NewCustomList2.Add(6);
 
             JoinedCustomList = NewCustomList1 + NewCustomList2;
-            actual = JoinedCustomList.workingArray;
+            actualArr = JoinedCustomList.workingArray;
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveTwoBigLists_UseOverloadedOperatorToAddMerge_ReturnOneListOfAllElements()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+            CustomList<int> NewCustomList2 = new CustomList<int>();
+            CustomList<int> expectedList = new CustomList<int>();
+            for (int i = 0; i < 50; i++)
+            {
+                expectedList.Add(i);
+            }
+            CustomList<int> JoinedCustomList;
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr;
+            int[] actualArr;
+
+            //act - act on the method under test            
+            for (int i = 0; i < 25; i++)
+            {
+                NewCustomList1.Add(i);
+            }
+            for (int i = 0; i < 25; i++)
+            {
+                NewCustomList2.Add(i);
+            }
+
+            JoinedCustomList = NewCustomList1 + NewCustomList2;
+            expectedArr = JoinedCustomList.workingArray;
+            actualArr = JoinedCustomList.workingArray;
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
         }
         //------------------------------------OverLoad the - operator------------------------------
-
         [TestMethod]
-        public void HaveTwoLists_UseMinusOverloadedOperatorToAddMerge_ReturnUniqueElementsForFirst()
+        public void HaveTwoLists3_UseMinusOverloadedOperatorToAddMerge_ReturnUniqueElementsForFirst()
         {
             CustomList<int> NewCustomList1 = new CustomList<int>();
             CustomList<int> NewCustomList2 = new CustomList<int>();
-            CustomList<int> expectedList = new CustomList<int>();
             CustomList<int> JoinedCustomList;
+            bool expected = true;
+            bool actual;
 
-            int[] expected = expectedList.workingArray;
-            int[] actual;
+            int[] expectedArr = { 3, 5, 0, 0 };
+            int[] actualArr;
 
             //act - act on the method under test            
             NewCustomList1.Add(1);
             NewCustomList1.Add(3);
             NewCustomList1.Add(5);
+
             NewCustomList2.Add(2);
             NewCustomList2.Add(1);
             NewCustomList2.Add(6);
 
-            JoinedCustomList = NewCustomList1 + NewCustomList2;
-            actual = JoinedCustomList.workingArray;
+            JoinedCustomList = NewCustomList1 - NewCustomList2;
+            actualArr = JoinedCustomList.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveTwoLists6_UseMinusOverloadedOperatorToAddMerge_ReturnUniqueElementsForFirst()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+            CustomList<int> NewCustomList2 = new CustomList<int>();
+            CustomList<int> JoinedCustomList;
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr = { 2, 5, 0, 0 };
+            int[] actualArr;
+
+            //act - act on the method under test            
+            NewCustomList1.Add(1);
+            NewCustomList1.Add(2);
+            NewCustomList1.Add(3);
+            NewCustomList1.Add(4);
+            NewCustomList1.Add(5);
+            NewCustomList1.Add(6);
+
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(3);
+            NewCustomList2.Add(4);
+            NewCustomList2.Add(6);
+            NewCustomList2.Add(6);
+
+            JoinedCustomList = NewCustomList1 - NewCustomList2;
+            actualArr = JoinedCustomList.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);

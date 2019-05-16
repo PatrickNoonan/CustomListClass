@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyListClass
 {
-    public class CustomList<T> : IEquatable<T>
+    public class CustomList<T> : IEquatable<T> //IEnumerable
     {
         //has these
         public T[] workingArray;
@@ -170,7 +170,7 @@ namespace MyListClass
             CustomList<T> ZippedList = new CustomList<T>();
 
             int largestCount;
-            if ( firstList.count > secondList.count)
+            if (firstList.count > secondList.count)
             {
                 largestCount = firstList.count;
             }
