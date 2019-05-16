@@ -167,7 +167,7 @@ namespace MyListClass
             return ReducedCustomList;
         }
         public CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
-        {//void
+        {
             CustomList<T> ZippedList = new CustomList<T>();
 
             int largestCount;
@@ -186,6 +186,19 @@ namespace MyListClass
                 ZippedList.Add(secondList[i]);
             }
             return ZippedList;
+        }
+        public void Sort(int[] arr)
+        {
+            CustomList<int> SortedList = new CustomList<int>();
+
+            QuickSort(arr, 0, capacity - 1);
+
+            foreach (var item in arr)
+            {
+                SortedList.Add(item);
+            }
+            Console.WriteLine(SortedList);
+            Console.ReadLine();
         }
         public void QuickSort(int[] arr, int left, int right)
         {
@@ -208,7 +221,6 @@ namespace MyListClass
             int pivot = arr[left];
             while (true)
             {
-
                 while (arr[left] < pivot)
                 {
                     left++;
@@ -226,8 +238,6 @@ namespace MyListClass
                     int temp = arr[left];
                     arr[left] = arr[right];
                     arr[right] = temp;
-
-
                 }
                 else
                 {

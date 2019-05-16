@@ -801,14 +801,18 @@ namespace MyListTests
         {
             CustomList<int> NewCustomList1 = new CustomList<int>();
 
-            int[] expectedArr = { 1, 1, 2, 1, 3, 3, 0, 0 };
-            int[] actualArr;
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] actualArr = { 1, 2 };
 
             //act - act on the method under test  
-            for (int i = 0; i < 9; i++)
+            for (int i = 9; i > 0; i--)
             {
-
+                NewCustomList1.Add(i);
             }
+            NewCustomList1.QuickSort(NewCustomList1.workingArray, 1, 9);
 
             if (expectedArr.SequenceEqual(actualArr))
             {
