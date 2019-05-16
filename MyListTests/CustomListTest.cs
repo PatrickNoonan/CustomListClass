@@ -677,5 +677,120 @@ namespace MyListTests
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
         }
+        //------------------------------------Zip Method-----------------------------------
+        [TestMethod]
+        public void HaveTwoLists3_UseZipToMerge_ReturnZippedList()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+            CustomList<int> NewCustomList2 = new CustomList<int>();
+            CustomList<int> JoinedCustomList = new CustomList<int>();
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr = { 1, 1, 2, 1, 3, 3, 0, 0 };
+            int[] actualArr;
+
+            //act - act on the method under test            
+            NewCustomList1.Add(1);
+            NewCustomList1.Add(2);
+            NewCustomList1.Add(3);
+
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(3);
+
+            JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
+            actualArr = JoinedCustomList.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveTwoStringLists3_UseZipToMerge_ReturnZippedList()
+        {
+            CustomList<string> NewCustomList1 = new CustomList<string>();
+            CustomList<string> NewCustomList2 = new CustomList<string>();
+            CustomList<string> JoinedCustomList = new CustomList<string>();
+            bool expected = true;
+            bool actual;
+
+            string[] expectedArr = { "Hey", "Man", "Yo", "Dude", "Sup", "Guy", null, null };
+            string[] actualArr;
+
+            //act - act on the method under test            
+            NewCustomList1.Add("Hey");
+            NewCustomList1.Add("Yo");
+            NewCustomList1.Add("Sup");
+
+            NewCustomList2.Add("Man");
+            NewCustomList2.Add("Dude");
+            NewCustomList2.Add("Guy");
+
+            JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
+            actualArr = JoinedCustomList.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveTwoLists6_UseZipToMerge_ReturnZippedList()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+            CustomList<int> NewCustomList2 = new CustomList<int>();
+            CustomList<int> JoinedCustomList = new CustomList<int>();
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr = { 1, 1, 2, 1, 3, 3, 1, 1, 1, 2, 3, 3, 0, 0, 0, 0 };
+            int[] actualArr;
+
+            //act - act on the method under test            
+            NewCustomList1.Add(1);
+            NewCustomList1.Add(2);
+            NewCustomList1.Add(3);
+            NewCustomList1.Add(1);
+            NewCustomList1.Add(1);
+            NewCustomList1.Add(3);
+
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(3);
+            NewCustomList2.Add(1);
+            NewCustomList2.Add(2);
+            NewCustomList2.Add(3);
+
+            JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
+            actualArr = JoinedCustomList.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

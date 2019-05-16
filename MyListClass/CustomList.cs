@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyListClass
 {
-    public class CustomList<T> : IEquatable<T> //IEnumerable
+    public class CustomList<T> : IEquatable<T>, IEnumerable
     {
         //has these
         public T[] workingArray;
@@ -45,6 +45,13 @@ namespace MyListClass
         }
 
         //does this
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return workingArray[i];
+            }
+        }
         public void checkCapacity() //break up into SR
         {
             if (count == capacity)
@@ -115,12 +122,6 @@ namespace MyListClass
         }
         public override string ToString()
         {
-            /*string result;            
-            for ( int i = 0; i < count; i++)
-            {
-                result += workingArray[i];                    
-            }
-            */
             var result = string.Join(" ", workingArray).Trim();
 
             return result;
