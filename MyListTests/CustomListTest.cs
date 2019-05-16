@@ -10,9 +10,7 @@ namespace MyListTests
 {
     [TestClass]
     public class CustomListTest
-    {
-        //----------------------------------Count------------------------------------------
-        //---------------------------------Capacity----------------------------------------
+    {       
         //--------------------------------Add Method---------------------------------------
         [TestMethod]
         public void HaveArrayWithoutElementsOnIt_UseAddMethods_ReturnArrayWithThem()
@@ -199,6 +197,42 @@ namespace MyListTests
             NewCustomList.Add(value2);
 
             actual = NewCustomList.workingArray[17];
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        //----------------------------------Count--------------------------------------------
+        [TestMethod]
+        public void CountStartsAtZero_UseAddMethods_ReturnIncreasedCount()
+        {
+            CustomList<int> NewCustomList = new CustomList<int>();
+            int value1 = 7;
+            int expected = 2;
+            int actual;
+
+            //act - act on the method under test
+            NewCustomList.Add(value1);
+            NewCustomList.Add(value1);
+            actual = NewCustomList.Count;
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        //---------------------------------Capacity---------------------------------------------
+        [TestMethod]
+        public void CapacityStartsAtFour_UseAddMethods_ReturnIncreasedCapacity()
+        {
+            CustomList<int> NewCustomList = new CustomList<int>();
+            int value1 = 7;
+            int expected = 8;
+            int actual;
+
+            //act - act on the method under test
+            for (int i = 0; i < 6; i++)
+            {
+                NewCustomList.Add(value1);
+            }
+            actual = NewCustomList.Capacity;
 
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
@@ -702,8 +736,8 @@ namespace MyListTests
             NewCustomList2.Add(1);
             NewCustomList2.Add(3);
 
-            JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
-            actualArr = JoinedCustomList.workingArray;
+            NewCustomList1.Zip(NewCustomList2);
+            actualArr = NewCustomList1.workingArray;
 
             if (expectedArr.SequenceEqual(actualArr))
             {
@@ -738,8 +772,8 @@ namespace MyListTests
             NewCustomList2.Add("Dude");
             NewCustomList2.Add("Guy");
 
-            JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
-            actualArr = JoinedCustomList.workingArray;
+            NewCustomList1.Zip(NewCustomList2);
+            actualArr = NewCustomList1.workingArray;
 
             if (expectedArr.SequenceEqual(actualArr))
             {
@@ -758,7 +792,6 @@ namespace MyListTests
         {
             CustomList<int> NewCustomList1 = new CustomList<int>();
             CustomList<int> NewCustomList2 = new CustomList<int>();
-            CustomList<int> JoinedCustomList = new CustomList<int>();
             bool expected = true;
             bool actual;
 
@@ -780,8 +813,8 @@ namespace MyListTests
             NewCustomList2.Add(2);
             NewCustomList2.Add(3);
 
-            JoinedCustomList = JoinedCustomList.Zip(NewCustomList1, NewCustomList2);
-            actualArr = JoinedCustomList.workingArray;
+            NewCustomList1.Zip(NewCustomList2);
+            actualArr = NewCustomList1.workingArray;
 
             if (expectedArr.SequenceEqual(actualArr))
             {
@@ -805,14 +838,15 @@ namespace MyListTests
             bool actual;
 
             int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int[] actualArr = { 1, 2 };
+            int[] actualArr;
 
             //act - act on the method under test  
             for (int i = 9; i > 0; i--)
             {
                 NewCustomList1.Add(i);
             }
-            NewCustomList1.QuickSort(NewCustomList1.workingArray, 1, 9);
+            NewCustomList1 = NewCustomList1.Sort(NewCustomList1.workingArray);
+            actualArr = NewCustomList1.workingArray;
 
             if (expectedArr.SequenceEqual(actualArr))
             {

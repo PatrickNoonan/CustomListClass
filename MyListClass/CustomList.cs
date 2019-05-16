@@ -166,14 +166,14 @@ namespace MyListClass
             }
             return ReducedCustomList;
         }
-        public CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
+        public void Zip(CustomList<T> secondList)
         {
-            CustomList<T> ZippedList = new CustomList<T>();
+            CustomList<T> HolderList = new CustomList<T>();
 
             int largestCount;
-            if (firstList.count > secondList.count)
+            if (count > secondList.count)
             {
-                largestCount = firstList.count;
+                largestCount = count;
             }
             else
             {
@@ -182,12 +182,12 @@ namespace MyListClass
 
             for (int i = 0; i < largestCount; i++)
             {
-                ZippedList.Add(firstList[i]);
-                ZippedList.Add(secondList[i]);
+                HolderList.Add(workingArray[i]);
+                HolderList.Add(secondList[i]);
             }
-            return ZippedList;
+            workingArray = HolderList.workingArray;
         }
-        public void Sort(int[] arr)
+        public CustomList<int> Sort(int[] arr)
         {
             CustomList<int> SortedList = new CustomList<int>();
 
@@ -197,8 +197,7 @@ namespace MyListClass
             {
                 SortedList.Add(item);
             }
-            Console.WriteLine(SortedList);
-            Console.ReadLine();
+            return SortedList;
         }
         public void QuickSort(int[] arr, int left, int right)
         {
