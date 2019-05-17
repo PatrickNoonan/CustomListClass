@@ -756,7 +756,6 @@ namespace MyListTests
         {
             CustomList<string> NewCustomList1 = new CustomList<string>();
             CustomList<string> NewCustomList2 = new CustomList<string>();
-            CustomList<string> JoinedCustomList = new CustomList<string>();
             bool expected = true;
             bool actual;
 
@@ -831,6 +830,68 @@ namespace MyListTests
         //------------------------------------Quick Sort Method---------------------------------
         [TestMethod]
         public void HaveArrayOfInts_UseQuickSortToSort_ReturnSortArray()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] actualArr;
+
+            //act - act on the method under test  
+            for (int i = 9; i > 0; i--)
+            {
+                NewCustomList1.Add(i);
+            }
+            NewCustomList1 = NewCustomList1.Sort(NewCustomList1.workingArray);
+            actualArr = NewCustomList1.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveSmallArrayOfInts_UseQuickSortToSort_ReturnSortArray()
+        {
+            CustomList<int> NewCustomList1 = new CustomList<int>();
+
+            bool expected = true;
+            bool actual;
+
+            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] actualArr;
+
+            //act - act on the method under test  
+            for (int i = 9; i > 0; i--)
+            {
+                NewCustomList1.Add(i);
+            }
+            NewCustomList1 = NewCustomList1.Sort(NewCustomList1.workingArray);
+            actualArr = NewCustomList1.workingArray;
+
+            if (expectedArr.SequenceEqual(actualArr))
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+
+            //assert - assert that the expected result occured
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void HaveLargeArrayOfInts_UseQuickSortToSort_ReturnSortArray()
         {
             CustomList<int> NewCustomList1 = new CustomList<int>();
 

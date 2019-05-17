@@ -126,7 +126,8 @@ namespace MyListClass
         }
         public override string ToString()
         {
-            var result = string.Join(" ", workingArray).Trim();
+            string result = string.Join(" ", workingArray).Trim();
+            result = result.Trim('0');
 
             return result;
         }
@@ -187,60 +188,70 @@ namespace MyListClass
             }
             workingArray = HolderList.workingArray;
         }
+        //Hoare partition scheme
         public CustomList<int> Sort(int[] arr)
         {
             CustomList<int> SortedList = new CustomList<int>();
+            int[] arrayToSort = new int[count];
+            for (int i = 0; i < count; i++)
+            {
+                arrayToSort[i] = arr[i];
+            }
 
-            Sorter(arr, 0, capacity - 1);
+            Sorter(arrayToSort, 0, count - 1);
 
-            foreach (var item in arr)
+            foreach (var item in arrayToSort)
             {
                 SortedList.Add(item);
             }
             return SortedList;
         }
-        public void Sorter(int[] arr, int left, int right)
+        public void Sorter(int[] arr, int low, int high)
         {
-            if (left < right)
+            if (low < high)
             {
-                int pivot = Swap(arr, left, right);
+                int pivot = Partition(arr, low, high);
 
                 if (pivot > 1)
                 {
-                    Sorter(arr, left, pivot - 1);
+                    Sorter(arr, low, pivot - 1);
                 }
-                if (pivot + 1 < right)
+                if (pivot + 1 < high)
                 {
-                    Sorter(arr, pivot + 1, right);
+                    Sorter(arr, pivot + 1, high);
                 }
             }
         }
-        public int Swap(int[] arr, int left, int right)
+        public int Partition(int[] arr, int low, int high)
         {
-            int pivot = arr[left];
+            int pivot = arr[low];
             while (true)
             {
-                while (arr[left] < pivot)
+                while (arr[low] < pivot)
                 {
-                    left++;
+                    low++;
                 }
-                while (arr[right] > pivot)
+                while (arr[high] > pivot)
                 {
-                    right--;
+                    high--;
                 }
-                if (left < right)
+                if (low < high)
                 {
-                    if (arr[left] == arr[right]) return right;
+                    if (arr[low] == arr[high])
+                    {
+                        return high;
+                    }
 
-                    int temp = arr[left];
-                    arr[left] = arr[right];
-                    arr[right] = temp;
+                    int temp = arr[low];
+                    arr[low] = arr[high];
+                    arr[high] = temp;
                 }
                 else
                 {
-                    return right;
+                    return high;
                 }
             }
         }
     }
 }
+
