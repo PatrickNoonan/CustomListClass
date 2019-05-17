@@ -191,7 +191,7 @@ namespace MyListClass
         {
             CustomList<int> SortedList = new CustomList<int>();
 
-            QuickSort(arr, 0, capacity - 1);
+            Sorter(arr, 0, capacity - 1);
 
             foreach (var item in arr)
             {
@@ -199,23 +199,23 @@ namespace MyListClass
             }
             return SortedList;
         }
-        public void QuickSort(int[] arr, int left, int right)
+        public void Sorter(int[] arr, int left, int right)
         {
             if (left < right)
             {
-                int pivot = Partition(arr, left, right);
+                int pivot = Swap(arr, left, right);
 
                 if (pivot > 1)
                 {
-                    QuickSort(arr, left, pivot - 1);
+                    Sorter(arr, left, pivot - 1);
                 }
                 if (pivot + 1 < right)
                 {
-                    QuickSort(arr, pivot + 1, right);
+                    Sorter(arr, pivot + 1, right);
                 }
             }
         }
-        public int Partition(int[] arr, int left, int right)
+        public int Swap(int[] arr, int left, int right)
         {
             int pivot = arr[left];
             while (true)
@@ -224,12 +224,10 @@ namespace MyListClass
                 {
                     left++;
                 }
-
                 while (arr[right] > pivot)
                 {
                     right--;
                 }
-
                 if (left < right)
                 {
                     if (arr[left] == arr[right]) return right;

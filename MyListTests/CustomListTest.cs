@@ -10,7 +10,7 @@ namespace MyListTests
 {
     [TestClass]
     public class CustomListTest
-    {       
+    {
         //--------------------------------Add Method---------------------------------------
         [TestMethod]
         public void HaveArrayWithoutElementsOnIt_UseAddMethods_ReturnArrayWithThem()
