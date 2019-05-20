@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyListClass
 {
-    public class CustomList<T> : IEnumerable, IComparable
+    public class CustomList<T> : IEnumerable
     {
         //has these
         public T[] workingArray;
@@ -24,7 +24,7 @@ namespace MyListClass
                 {
                     throw new IndexOutOfRangeException($"The list can hold only {capacity} elements.");
                 }
-                return (T)workingArray[i];
+                return workingArray[i];
             }
             set
             {
@@ -35,7 +35,6 @@ namespace MyListClass
                 workingArray[i] = value;
             }
         }
-
         //constructor
         public CustomList()
         {
@@ -51,10 +50,6 @@ namespace MyListClass
             {
                 yield return workingArray[i];
             }
-        }
-        public int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
         }
         public void checkCapacity() //break up into SR
         {
@@ -127,7 +122,6 @@ namespace MyListClass
         public override string ToString()
         {
             string result = string.Join(" ", workingArray).Trim();
-            result = result.Trim('0');
 
             return result;
         }

@@ -398,7 +398,6 @@ namespace MyListTests
             //assert - assert that the expected result occured
             Assert.AreEqual(expected, actual);
         }
-        //--------------------------------ForEach Method-----------------------------------------
         //--------------------------------ToString Method-----------------------------------------
         [TestMethod]
         public void HaveArrayWithElementsOnIt_UseToStringMethod_ReturnStringOfElements()
@@ -836,73 +835,11 @@ namespace MyListTests
             bool expected = true;
             bool actual;
 
-            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 0 };
             int[] actualArr;
 
             //act - act on the method under test  
-            for (int i = 9; i > 0; i--)
-            {
-                NewCustomList1.Add(i);
-            }
-            NewCustomList1 = NewCustomList1.Sort(NewCustomList1.workingArray);
-            actualArr = NewCustomList1.workingArray;
-
-            if (expectedArr.SequenceEqual(actualArr))
-            {
-                actual = true;
-            }
-            else
-            {
-                actual = false;
-            }
-
-            //assert - assert that the expected result occured
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void HaveSmallArrayOfInts_UseQuickSortToSort_ReturnSortArray()
-        {
-            CustomList<int> NewCustomList1 = new CustomList<int>();
-
-            bool expected = true;
-            bool actual;
-
-            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int[] actualArr;
-
-            //act - act on the method under test  
-            for (int i = 9; i > 0; i--)
-            {
-                NewCustomList1.Add(i);
-            }
-            NewCustomList1 = NewCustomList1.Sort(NewCustomList1.workingArray);
-            actualArr = NewCustomList1.workingArray;
-
-            if (expectedArr.SequenceEqual(actualArr))
-            {
-                actual = true;
-            }
-            else
-            {
-                actual = false;
-            }
-
-            //assert - assert that the expected result occured
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void HaveLargeArrayOfInts_UseQuickSortToSort_ReturnSortArray()
-        {
-            CustomList<int> NewCustomList1 = new CustomList<int>();
-
-            bool expected = true;
-            bool actual;
-
-            int[] expectedArr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int[] actualArr;
-
-            //act - act on the method under test  
-            for (int i = 9; i > 0; i--)
+            for (int i =7; i > 0; i--)
             {
                 NewCustomList1.Add(i);
             }
